@@ -22,3 +22,25 @@ self.addEventListener("install", (event) => {
 
   self.skipWaiting();
 });
+
+// Activation (Cleans up old caches)
+self.addEventListener("activate", event => {
+    const currentCaches = [STATIC_CACHE, RUN_TIME_CACHE];
+    event.waitUntil(
+        caches
+            .keys()
+            .then(cache_names => {
+                return cache_names.filter(
+                    cache_name => !currentCaches.includes(cache_name)
+                );
+            })
+            .then(cachesToBeDeleted => {
+                return Promise.all(
+                    cachesToBeDeleted.map(cacheToBeDeleted => {
+                        return caches.delete(cacheToBeDeleted);
+                    })
+                );
+            })
+            .then(() => self.clients.claim())
+    );
+});
