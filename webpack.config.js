@@ -9,22 +9,22 @@ const path = require("path");
 // =========================================
 const config = {
     entry: {
-      app: './public/index.js',
+      app: "./public/assets/js/index.js",
     },
     output: {
-      path: __dirname + '/public/dist',
-      filename: 'bundle.js',
+      path: __dirname + "/public/dist",
+      filename: "bundle.js",
     },
-    mode: 'development',
+    mode: "development",
     module: {
       rules: [
         {
           test: /\.js$/,
           exclude: /node_modules/,
           use: {
-            loader: 'babel-loader',
+            loader: "babel-loader",
             options: {
-              presets: ['@babel/preset-env'],
+              presets: ["@babel/preset-env"],
             },
           },
         },
@@ -33,16 +33,16 @@ const config = {
     plugins: [
       new WebpackPwaManifest({
         fingerprints: false,
-        name: 'Online-Offline-Budget-Trackers',
-        short_name: 'BudgetTracker',
-        background_color: '#ffffff',
-        theme_color: '#ffffff',
-        start_url: '/',
+        name: "Online-Offline-Budget-Trackers",
+        short_name: "BudgetTracker",
+        background_color: "#ffffff",
+        theme_color: "#ffffff",
+        start_url: "/",
         icons: [
           {
-            src: path.resolve('public/icons/icon-512x512.png'),
+            src: path.resolve("public/assets/images/icons/icon-512x512.png"),
             sizes: [192, 512],
-            destination: path.join('public', 'icons'),
+            destination: path.join("public", "icons"),
           },
         ],
       }),
