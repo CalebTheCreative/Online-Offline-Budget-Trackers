@@ -26,9 +26,9 @@ router.get("/api/transaction", (req, res) => {
     .then(dbTransaction => {
       res.json(dbTransaction);
     })
-    .catch(err => {
-      res.status(404).json(err);
-    });
+    // .catch(err => {
+    //   res.status(404).json(err);
+    // });
 });
 
 module.exports = router;
