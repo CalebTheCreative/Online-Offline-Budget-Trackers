@@ -19,3 +19,12 @@ request.onsuccess = function(evt) {
 request.onerror = function (evt) {
     console.log("ISSUE! " + evt.target.errorCode);
 };
+
+// Saves when offline
+function saveRecord(record) {
+    const transaction = db.transaction(["pending"], "readwrite");
+    const store = transaction.objectStore("pending");
+    store.add(record);    
+};
+
+
