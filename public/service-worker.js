@@ -15,13 +15,13 @@ const RUN_TIME_CACHE = "run-time-cache-v1";
 
 // Installation
 self.addEventListener("install", (event) => {
-  event.waitUntil(
-    caches.open(STATIC_CACHE).then(cache  => {
-      return cache.addAll(FILES_TO_CACHE);
-    })
-  );
+    event.waitUntil(
+        caches.open(STATIC_CACHE).then(cache => {
+            return cache.addAll(FILES_TO_CACHE);
+        })
+    );
 
-  self.skipWaiting();
+    self.skipWaiting();
 });
 
 // Activation (Cleans up old caches)
@@ -59,7 +59,7 @@ self.addEventListener("fetch", event => {
 
     // Handle RUN_TIME_CACHE GET requests from /api routes
     if (event.request.url.includes("/api/")) {
-    // Make network request. Go to cache if fails (offline).
+        // Make network request. Go to cache if fails (offline).
         event.respondWith(
             caches.open(RUN_TIME_CACHE).then(cache => {
                 return fetch(event.request)
